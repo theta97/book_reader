@@ -1,4 +1,8 @@
+import 'package:ebook_reader/screens/search.dart';
 import 'package:flutter/material.dart';
+import 'package:ebook_reader/screens/home.dart';
+import 'package:ebook_reader/screens/library.dart';
+import 'package:ebook_reader/screens/profile.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key});
@@ -12,22 +16,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Settings',
-      style: optionStyle,
-    ),
+    HomePage(),
+    LibraryPage(),
+    SearchPage(),
+    ProfilePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -47,26 +39,26 @@ class _BottomNavBarState extends State<BottomNavBar> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.blueGrey,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
-            backgroundColor: Colors.green,
+            icon: Icon(Icons.auto_stories_sharp),
+            label: 'Library',
+            backgroundColor: Colors.blueGrey,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
-            backgroundColor: Colors.purple,
+            icon: Icon(Icons.search_sharp),
+            label: 'Search',
+            backgroundColor: Colors.blueGrey,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
+            icon: Icon(Icons.account_circle_sharp),
             label: 'Settings',
-            backgroundColor: Colors.pink,
+            backgroundColor: Colors.blueGrey,
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Color.fromARGB(255, 2, 31, 44),
         onTap: _onItemTapped,
       ),
     );
