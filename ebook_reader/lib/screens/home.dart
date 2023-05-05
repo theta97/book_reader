@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:ebook_reader/genre.dart';
+import 'package:ebook_reader/bookcards.dart';
+import 'package:ebook_reader/newbooks.dart';
 import 'package:flutter/rendering.dart';
 
 class HomePage extends StatefulWidget {
@@ -105,11 +107,117 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            // ListView(
-            //   scrollDirection: Axis.horizontal,
-            //   children: const [GenreCard()],
-            // ),
             const GenreCard(),
+            Column(
+              children: [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      InkWell(
+                        onTap: () {},
+                        child: const BookCards(
+                          bookpic: "assets/images/1.jpg",
+                          booktitle: 'Title of the Book',
+                          bookauthor: 'Author ',
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: const BookCards(
+                          bookpic: "assets/images/2.jpg",
+                          booktitle: 'Title of the Book',
+                          bookauthor: 'Author ',
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: const BookCards(
+                          bookpic: "assets/images/1.jpg",
+                          booktitle: 'Title of the Book',
+                          bookauthor: 'Author ',
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: const BookCards(
+                          bookpic: "assets/images/2.jpg",
+                          booktitle: 'Title of the Book',
+                          bookauthor: 'Author ',
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: const BookCards(
+                          bookpic: "assets/images/1.jpg",
+                          booktitle: 'Title of the Book',
+                          bookauthor: 'Author ',
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: const BookCards(
+                          bookpic: "assets/images/2.jpg",
+                          booktitle: 'Title of the Book',
+                          bookauthor: 'Author ',
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 10),
+                NewBooks(),
+                SizedBox(height: 15),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      InkWell(
+                        onTap: () {},
+                        child: BookCards(
+                          bookpic: "assets/images/2.jpg",
+                          booktitle: 'Title of the Book',
+                          bookauthor: 'Author ',
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: BookCards(
+                          bookpic: "assets/images/2.jpg",
+                          booktitle: 'Title of the Book',
+                          bookauthor: 'Author ',
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: BookCards(
+                          bookpic: "assets/images/2.jpg",
+                          booktitle: 'Title of the Book',
+                          bookauthor: 'Author ',
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: BookCards(
+                          bookpic: "assets/images/2.jpg",
+                          booktitle: 'Title of the Book',
+                          bookauthor: 'Author ',
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: BookCards(
+                          bookpic: "assets/images/2.jpg",
+                          booktitle: 'Title of the Book',
+                          bookauthor: 'Author ',
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+              ],
+            ),
           ],
         ),
       ),
