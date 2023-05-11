@@ -1,6 +1,8 @@
 import 'package:ebook_reader/screens/search.dart';
 import 'package:flutter/material.dart';
 import 'package:ebook_reader/screens/home.dart';
+import 'package:ebook_reader/screens/homenew.dart';
+
 import 'package:ebook_reader/screens/library.dart';
 import 'package:ebook_reader/screens/profile.dart';
 
