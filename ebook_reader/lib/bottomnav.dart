@@ -19,7 +19,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    LibraryPage(),
+    // LibraryPageContinueReadingBannerSection(),
+    LibraryPageBookmarkSection(),
     SearchPage(),
     ProfilePage(),
   ];
