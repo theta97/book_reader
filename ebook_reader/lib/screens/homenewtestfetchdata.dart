@@ -7,6 +7,7 @@ import 'package:ebook_reader/book.dart';
 import 'package:ebook_reader/newbooks.dart';
 import 'package:ebook_reader/bookcards.dart';
 
+
 Future<List<Data>> fetchData() async {
   var url = Uri.parse('https://10.0.2.2:7128/api/Books');
   final response = await http.get(url);
@@ -22,24 +23,18 @@ class Data {
   final int bookId;
   final int authorId;
   final String bookname;
-  final String bookpic;
-  
-  
-  Data(
-      {required this.bookId,
-      required this.authorId,
-      required this.bookname,
-      required this.bookpic});
+
+  Data({required this.bookId, required this.authorId, required this.bookname});
 
   factory Data.fromJson(Map<String, dynamic> json) {
     return Data(
       bookId: json['bookId'],
       authorId: json['authorId'],
       bookname: json['bookname'],
-      bookpic: json['bookpic'],
     );
   }
 }
+
 
 
 class HomePage extends StatefulWidget {
@@ -50,6 +45,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -143,95 +143,42 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           GenreCard(),
-          // Expanded(
-          //   child: ListView(
-          //       // shrinkWrap: true,
-          //       scrollDirection: Axis.horizontal,
-          //       children: [
-          //         Padding(
-          //           padding: const EdgeInsets.only(left: 10),
-          //           child: Container(
-          //             // height: 10,
-          //             width: 150,
-          //             decoration: BoxDecoration(
-          //               borderRadius: BorderRadius.circular(10),
-          //               image: DecorationImage(
-          //                 image: AssetImage("assets/images/1.jpg"),
-          //                 fit: BoxFit.fill,
-          //               ),
-          //             ),
-          //           ),
-          //         ),
-          //       ]),
-          // )
-          SizedBox(
-            height: 200.0,
-            child: FutureBuilder<List<Data>>(
-              future: fetchData(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      // return
-                      //   Row(
-                      //     children: [
-                      //       Text(snapshot.data![index].bookname),
-                      //       Text(snapshot.data![index].bookpic),
-                      //       // Text(books[index].bookpic),
-                      //       // Text(books[index].bookpdf),
-                      //       InkWell(
-                      //         onTap: () {
-                      //           Navigator.push(
-                      //             context,
-                      //             MaterialPageRoute(
-                      //               builder: (context) => const PdfSc(
-                      //                   pdflink:
-                      //                       "https://localhost/ebook_reader/pdfs/test.pdf"),
-                      //             ),
-                      //           );
-                      //         },
-                      //       ),
-                      //     ],
-                      //   );
-                      return Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 10),
-                            child: Container(
-                              height: 10,
-                              width: 150,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  // image: DecorationImage(
-                                  //     image: AssetImage('assets\images\1.jpg'),
-                                  //     ),
-                                      ),
-                              child: Text(snapshot.data![index].bookname),
-                            ),
-                          ),
-
-                          // Text(snapshot.data![index].bookpic),
-                        ],
-                      );
-                    },
-                  );
-                }
-                if (snapshot.hasError) {
-                  return Text(snapshot.error.toString());
-                }
-                // return CircularProgressIndicator();
-                return const Text("It work??");
-              },
-            ),
-          ),
+   
+        Expanded(
+          child: FutureBuilder<List<Data>>(
+      future: fetchData(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return ListView.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  height: 75,
+                  color: Colors.white,
+                  child: Center(
+                    child: Text(snapshot.data![index].bookname),
+                  ),
+                );
+              });
+        } else if (snapshot.hasError) {
+          return Text(snapshot.error.toString());
+        }
+        // By default show a loading spinner.
+        // return const CircularProgressIndicator();
+        return const Text("It work??") ;
+      },
+    ),
+        ),
         ],
       ),
     );
   }
+
+
 }
+
+
+
 
 class MyClipper extends CustomClipper<Path> {
   @override

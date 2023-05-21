@@ -20,7 +20,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   static const List<Widget> _widgetOptions = <Widget>[
     HomePage(),
     // LibraryPageContinueReadingBannerSection(),
-    LibraryPageBookmarkSection(),
+    LibraryTest(),
     SearchPage(),
     ProfilePage(),
   ];
