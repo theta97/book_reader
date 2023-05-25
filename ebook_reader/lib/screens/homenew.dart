@@ -6,41 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:ebook_reader/book.dart';
 import 'package:ebook_reader/newbooks.dart';
 import 'package:ebook_reader/bookcards.dart';
-
-Future<List<Data>> fetchData() async {
-  var url = Uri.parse('https://10.0.2.2:7128/api/Books');
-  final response = await http.get(url);
-  if (response.statusCode == 200) {
-    List jsonResponse = json.decode(response.body);
-    return jsonResponse.map((data) => Data.fromJson(data)).toList();
-  } else {
-    throw Exception('Unexpected error occured!');
-  }
-}
-
-class Data {
-  final int bookId;
-  final int authorId;
-  final String bookname;
-  final String bookpic;
-  
-  
-  Data(
-      {required this.bookId,
-      required this.authorId,
-      required this.bookname,
-      required this.bookpic});
-
-  factory Data.fromJson(Map<String, dynamic> json) {
-    return Data(
-      bookId: json['bookId'],
-      authorId: json['authorId'],
-      bookname: json['bookname'],
-      bookpic: json['bookpic'],
-    );
-  }
-}
-
+import 'package:ebook_reader/api/books_api.dart';
+import 'package:ebook_reader/models/book.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key});
@@ -164,8 +131,7 @@ class _HomePageState extends State<HomePage> {
           //         ),
           //       ]),
           // )
-          SizedBox(
-            height: 200.0,
+          Expanded(
             child: FutureBuilder<List<Data>>(
               future: fetchData(),
               builder: (context, snapshot) {
@@ -201,19 +167,29 @@ class _HomePageState extends State<HomePage> {
                           Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: Container(
-                              height: 10,
+                              height: 240,
                               width: 150,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  // image: DecorationImage(
-                                  //     image: AssetImage('assets\images\1.jpg'),
-                                  //     ),
-                                      ),
-                              child: Text(snapshot.data![index].bookname),
+                                borderRadius: BorderRadius.circular(10),
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                      snapshot.data![index].bookpic),
+                                  // "https://book_reader.test:443/books/pics/neptunesbrood.jpg"),
+                                ),
+                              ),
                             ),
                           ),
-
-                          // Text(snapshot.data![index].bookpic),
+                          Padding(
+                            padding: EdgeInsets.only(top: 5),
+                            child: Text(
+                              snapshot.data![index].bookname,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w800,
+                                // color: Colors.black,
+                              ),
+                            ),
+                          ),
                         ],
                       );
                     },
