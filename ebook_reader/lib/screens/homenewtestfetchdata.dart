@@ -1,12 +1,11 @@
-import 'package:ebook_reader/genre.dart';
+import 'package:ebook_reader/sections/home/genre.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:ebook_reader/book.dart';
+import 'package:ebook_reader/bookpdf.dart';
 import 'package:ebook_reader/newbooks.dart';
 import 'package:ebook_reader/bookcards.dart';
-
 
 Future<List<Data>> fetchData() async {
   var url = Uri.parse('https://10.0.2.2:7128/api/Books');
@@ -35,8 +34,6 @@ class Data {
   }
 }
 
-
-
 class HomePage extends StatefulWidget {
   const HomePage({Key? key});
 
@@ -45,11 +42,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -143,42 +135,36 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           GenreCard(),
-   
-        Expanded(
-          child: FutureBuilder<List<Data>>(
-      future: fetchData(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  height: 75,
-                  color: Colors.white,
-                  child: Center(
-                    child: Text(snapshot.data![index].bookname),
-                  ),
-                );
-              });
-        } else if (snapshot.hasError) {
-          return Text(snapshot.error.toString());
-        }
-        // By default show a loading spinner.
-        // return const CircularProgressIndicator();
-        return const Text("It work??") ;
-      },
-    ),
-        ),
+          Expanded(
+            child: FutureBuilder<List<Data>>(
+              future: fetchData(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          height: 75,
+                          color: Colors.white,
+                          child: Center(
+                            child: Text(snapshot.data![index].bookname),
+                          ),
+                        );
+                      });
+                } else if (snapshot.hasError) {
+                  return Text(snapshot.error.toString());
+                }
+                // By default show a loading spinner.
+                // return const CircularProgressIndicator();
+                return const Text("It work??");
+              },
+            ),
+          ),
         ],
       ),
     );
   }
-
-
 }
-
-
-
 
 class MyClipper extends CustomClipper<Path> {
   @override
