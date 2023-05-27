@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:ebook_reader/models/book_model.dart';
 
-Future<List<Book>> fetchData() async {
+Future<List<Book>> fetchBook() async {
   var url = Uri.parse('https://10.0.2.2:7128/api/Books');
   final response = await http.get(url);
   if (response.statusCode == 200) {
