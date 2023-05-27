@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                           Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: Container(
-                              height: 240,
+                              height: 190,
                               width: 150,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                                       snapshot.data![index].bookpic),
                                 ),
                               ),
-                              padding: EdgeInsets.only(top: 220),
+                              padding: EdgeInsets.only(top: 200),
                               child: Text(
                                 snapshot.data![index].bookname,
                                 textAlign: TextAlign.center,
@@ -130,6 +130,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
           ),
+          NewBooks(),
         ],
       ),
     );

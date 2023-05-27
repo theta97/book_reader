@@ -10,12 +10,13 @@ class NewBooks extends StatelessWidget {
     return Row(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 10, top: 5),
+          padding: const EdgeInsets.only(left: 10),
           child: Align(
             alignment: Alignment.centerLeft,
             child: Container(
               alignment: Alignment.center,
-              height: 30,
+              // To adjust the newly added heading added title change height
+              height: 120,
               width: 110,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
