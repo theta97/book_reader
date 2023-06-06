@@ -1,39 +1,8 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-// import 'package:http/http.dart' as http;
-// import 'dart:convert';
-
-// Future<List<Data>> fetchData() async {
-//   var url = Uri.parse('https://10.0.2.2:7128/api/Books');
-//   final response = await http.get(url);
-//   if (response.statusCode == 200) {
-//     List jsonResponse = json.decode(response.body);
-//     return jsonResponse.map((data) => Data.fromJson(data)).toList();
-//   } else {
-//     throw Exception('Unexpected error occured!');
-//   }
-// }
-
-// class Data {
-//   final int bookId;
-//   final int authorId;
-//   final String bookname;
-//   final String bookpic;
-
-//   Data(
-//       {required this.bookId,
-//       required this.authorId,
-//       required this.bookname,
-//       required this.bookpic});
-
-//   factory Data.fromJson(Map<String, dynamic> json) {
-//     return Data(
-//       bookId: json['bookId'],
-//       authorId: json['authorId'],
-//       bookname: json['bookname'],
-//       bookpic: json['bookpic'],
-//     );
-//   }
-// }
+import 'package:ebook_reader/sections/search/searchbox.dart';
+import 'package:ebook_reader/api/search_api.dart';
+import '../models/book_model.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key});
@@ -43,50 +12,89 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  List<Book> books = [];
+   String query = '';
+  Timer? debouncer;
   @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+  void initState() {
+    super.initState();
+
+    init();
   }
-//   final List<Map<String, dynamic>> _allUsers = [];
 
-//   // FILTER FUNCTIOn
+  @override
+  void dispose() {
+    debouncer?.cancel();
+    super.dispose();
+  }
 
-//   void _runFilter(String enteredKeyword) {
-//     List<Map<String, dynamic>> results = [];
-//     if (enteredKeyword.isEmpty) {
-//       // if the search field is empty or only contains white-space, we'll display all users
-//       results = _allUsers;
-//     } else {
-//       results = _allUsers
-//           .where((user) =>
-//               user["name"].toLowerCase().contains(enteredKeyword.toLowerCase()))
-//           .toList();
-//       // we use the toLowerCase() method to make it case-insensitive
-//     }
-//   }
+  void debounce(
+    VoidCallback callback, {
+    Duration duration = const Duration(milliseconds: 1000),
+  }) {
+    if (debouncer != null) {
+      debouncer!.cancel();
+    }
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Padding(
-//         padding: const EdgeInsets.all(10),
-//         child: Column(
-//           children: [
-//             const SizedBox(
-//               height: 20,
-//             ),
-//             TextField(
-//               onChanged: (value) => _runFilter(value),
-//               decoration: const InputDecoration(
-//                   labelText: 'Search', suffixIcon: Icon(Icons.search)),
-//             ),
-//             const SizedBox(
-//               height: 20,
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
+    debouncer = Timer(duration, callback);
+  }
+
+  Future init() async {
+    final books = await SearchBooksApi.getBooks(query);
+
+    setState(() => this.books = books);
+  }
+
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color(0xFF203A43),
+          title: Text("Search"),
+          centerTitle: true,
+        ),
+        body: Column(
+          children: <Widget>[
+            buildSearch(),
+            Expanded(
+              child: ListView.builder(
+                itemCount: books.length,
+                itemBuilder: (context, index) {
+                  final book = books[index];
+
+                  return buildBook(book);
+                },
+              ),
+            ),
+          ],
+        ),
+      );
+
+  Widget buildSearch() => SearchWidget(
+        text: query,
+        hintText: 'Title or Author Name',
+        onChanged: searchBook,
+      );
+
+  Future searchBook(String query) async => debounce(() async {
+        final books = await SearchBooksApi.getBooks(query);
+
+        if (!mounted) return;
+
+        setState(() {
+          this.query = query;
+          this.books = books;
+        });
+      });
+
+  Widget buildBook(Book book) => ListTile(
+        leading: Image.network(
+          book.bookpic,
+          fit: BoxFit.cover,
+          width: 50,
+          height: 50,
+        ),
+        title: Text(book.bookname),
+        // subtitle: Text(book.author),
+      );
 }
