@@ -25,27 +25,6 @@ class _HomePageState extends State<HomePage> {
         children: [
           MyClipPath(),
           GenreCard(),
-          // Expanded(
-          //   child: ListView(
-          //       // shrinkWrap: true,
-          //       scrollDirection: Axis.horizontal,
-          //       children: [
-          //         Padding(
-          //           padding: const EdgeInsets.only(left: 10),
-          //           child: Container(
-          //             // height: 10,
-          //             width: 150,
-          //             decoration: BoxDecoration(
-          //               borderRadius: BorderRadius.circular(10),
-          //               image: DecorationImage(
-          //                 image: AssetImage("assets/images/1.jpg"),
-          //                 fit: BoxFit.fill,
-          //               ),
-          //             ),
-          //           ),
-          //         ),
-          //       ]),
-          // )
           Expanded(
             child: FutureBuilder<List<Book>>(
               future: fetchBook(),
@@ -80,6 +59,18 @@ class _HomePageState extends State<HomePage> {
                       return Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          InkWell(onTap: () {
+                            Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Pdf(
+                                     pdflink: snapshot.data![index].bookpdf,
+                                     booktitle: snapshot.data![index].bookname
+                                     ),
+                                  ),
+                                );
+                          },
+                            child:
                           Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: Container(
@@ -100,23 +91,13 @@ class _HomePageState extends State<HomePage> {
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w800,
-
+                                
                                   // color: Colors.black,
                                 ),
                               ),
                             ),
                           ),
-                          // Padding(
-                          // padding: EdgeInsets.only(top: 255),
-                          // child: Text(
-                          //   snapshot.data![index].bookname,
-                          //   style: TextStyle(
-                          //     fontSize: 14,
-                          //     fontWeight: FontWeight.w800,
-                          // color: Colors.black,
-                          //   ),
-                          // ),
-                          // ),
+                          ),
                         ],
                       );
                     },

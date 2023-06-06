@@ -3,12 +3,14 @@ class Book {
   final int authorId;
   final String bookname;
   final String bookpic;
+  final String bookpdf;
 
   Book(
       {required this.bookId,
       required this.authorId,
       required this.bookname,
-      required this.bookpic});
+      required this.bookpic,
+      required this.bookpdf});
 
   factory Book.fromJson(Map<String, dynamic> json) {
     return Book(
@@ -16,6 +18,7 @@ class Book {
       authorId: json['authorId'],
       bookname: json['bookname'],
       bookpic: json['bookpic'],
+      bookpdf: json['bookpdf'],
     );
   }
 }
