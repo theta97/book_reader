@@ -74,7 +74,7 @@ class BookCards extends StatefulWidget{
                                       snapshot.data![index].bookpic),
                                 ),
                               ),
-                              padding: EdgeInsets.only(top: 200),
+                              padding: EdgeInsets.only(top: 140),
                               child: Text(
                                 snapshot.data![index].bookname,
                                 textAlign: TextAlign.center,

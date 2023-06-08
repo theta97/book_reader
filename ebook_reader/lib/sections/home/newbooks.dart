@@ -16,7 +16,7 @@ class NewBooks extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               // To adjust the newly added heading added title change height
-              height: 120,
+              height: 40,
               width: 110,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),

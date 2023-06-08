@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:ebook_reader/bookpdf.dart';
-import 'package:ebook_reader/newbooks.dart';
+import 'package:ebook_reader/sections/home/newbooks.dart';
 import 'package:ebook_reader/sections/home/bookcards.dart';
 import 'package:ebook_reader/api/books_api.dart';
 import 'package:ebook_reader/models/book_model.dart';
@@ -27,6 +27,9 @@ class _HomePageState extends State<HomePage> {
           GenreCard(),
           BookCards(),
           NewBooks(),
+          const BookCards(),
+          Padding(padding: EdgeInsets.only(bottom:30 ),
+          )
         ],
       ),
     );

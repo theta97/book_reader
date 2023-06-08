@@ -33,16 +33,16 @@ class _MyClipPathState extends State<MyClipPath> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.menu,
-                    size: 35,
-                    color: Colors.white,
-                  ),
-                ),
+                // IconButton(
+                //   onPressed: () {},
+                //   icon: const Icon(
+                //     Icons.menu,
+                //     size: 35,
+                //     color: Colors.white,
+                //   ),
+                // ),
                 const Text(
                   "Ebook Reader",
                   style: TextStyle(
@@ -50,14 +50,14 @@ class _MyClipPathState extends State<MyClipPath> {
                     fontSize: 30,
                   ),
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    CupertinoIcons.add,
-                    size: 35,
-                    color: Colors.white,
-                  ),
-                ),
+                // IconButton(
+                //   onPressed: () {},
+                //   icon: const Icon(
+                //     CupertinoIcons.add,
+                //     size: 35,
+                //     color: Colors.white,
+                //   ),
+                // ),
               ],
             ),
             Container(
