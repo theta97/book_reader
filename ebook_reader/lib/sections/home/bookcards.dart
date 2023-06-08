@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ebook_reader/api/books_api.dart';
 import 'package:ebook_reader/models/book_model.dart';
 import '../../bookpdf.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class BookCards extends StatefulWidget{
   const BookCards({super.key});
@@ -26,27 +27,6 @@ class BookCards extends StatefulWidget{
                     shrinkWrap: true,
                     itemCount: snapshot.data!.length,
                     itemBuilder: (BuildContext context, int index) {
-                      // return
-                      //   Row(
-                      //     children: [
-                      //       Text(snapshot.data![index].bookname),
-                      //       Text(snapshot.data![index].bookpic),
-                      //       // Text(books[index].bookpic),
-                      //       // Text(books[index].bookpdf),
-                      //       InkWell(
-                      //         onTap: () {
-                      //           Navigator.push(
-                      //             context,
-                      //             MaterialPageRoute(
-                      //               builder: (context) => const PdfSc(
-                      //                   pdflink:
-                      //                       "https://localhost/ebook_reader/pdfs/test.pdf"),
-                      //             ),
-                      //           );
-                      //         },
-                      //       ),
-                      //     ],
-                      //   );
                       return Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -97,8 +77,8 @@ class BookCards extends StatefulWidget{
                 if (snapshot.hasError) {
                   return Text(snapshot.error.toString());
                 }
-                // return CircularProgressIndicator();
-                return const Text("It work??");
+                return CircularProgressIndicator();
+                // return const Text("It work??");
               },
             ),
           );

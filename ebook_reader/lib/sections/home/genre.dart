@@ -54,7 +54,7 @@ class GenreCard extends StatelessWidget {
               return Text(snapshot.error.toString());
             }
             // return CircularProgressIndicator();
-            return const Text("It work??");
+            return const Text("Loading...");
           },
         ),
       ),

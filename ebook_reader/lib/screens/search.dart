@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:ebook_reader/sections/search/searchbox.dart';
 import 'package:ebook_reader/api/search_api.dart';
+import '../bookpdf.dart';
 import '../models/book_model.dart';
 
 class SearchPage extends StatefulWidget {
@@ -95,6 +96,17 @@ class _SearchPageState extends State<SearchPage> {
           height: 50,
         ),
         title: Text(book.bookname),
+        onTap: () {
+          Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Pdf(
+                                     pdflink: book.bookpdf,
+                                     booktitle: book.bookname
+                                     ),
+                                  ),
+                                );
+        }
         // subtitle: Text(book.author),
       );
 }
