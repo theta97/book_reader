@@ -1,24 +1,22 @@
-class SignUp {
-  // final int id;
-  final String username;
-  final String email;
-  final String password;
-  // final String profilepic;
+class User {
+  // int id;
+  String username;
+  String email;
 
-  SignUp(
-      {
-        // required this.id,
-      required this.username,
-      required this.email,
-      required this.password,
-      // required this.profilepic
-      });
 
-  Map<String, dynamic> toJson(){
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data["username"] = username;
-    data['email'] = email;
-    data['password'] = password;
-    return data;
+
+  User({
+    // this.id, 
+    required this.username,
+    required this.email,
+    });
+
+  factory User.fromJson(Map<String, dynamic> responseData) {
+    return User(
+        // id: responseData['id'],
+        username: responseData['username'],
+        email: responseData['email'],
+       
+    );
   }
 }

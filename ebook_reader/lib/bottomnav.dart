@@ -1,9 +1,7 @@
 import 'package:ebook_reader/screens/search.dart';
-import 'package:ebook_reader/sections/profile/sign_up.dart';
+import 'package:ebook_reader/sections/profile/signup.dart';
 import 'package:flutter/material.dart';
-import 'package:ebook_reader/screens/home.dart';
 import 'package:ebook_reader/screens/homenew.dart';
-
 import 'package:ebook_reader/screens/library.dart';
 import 'package:ebook_reader/screens/profile.dart';
 
@@ -23,7 +21,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     // LibraryPageContinueReadingBannerSection(),
     LibraryTest(),
     SearchPage(),
-    SignUpPage(),
+   AuthScreen(),
   ];
 
   void _onItemTapped(int index) {
