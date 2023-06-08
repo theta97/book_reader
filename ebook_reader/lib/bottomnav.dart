@@ -1,4 +1,5 @@
 import 'package:ebook_reader/screens/search.dart';
+import 'package:ebook_reader/sections/profile/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:ebook_reader/screens/home.dart';
 import 'package:ebook_reader/screens/homenew.dart';
@@ -17,12 +18,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
+  static  List<Widget> _widgetOptions = <Widget>[
     HomePage(),
     // LibraryPageContinueReadingBannerSection(),
     LibraryTest(),
     SearchPage(),
-    ProfilePage(),
+    SignUpPage(),
   ];
 
   void _onItemTapped(int index) {
